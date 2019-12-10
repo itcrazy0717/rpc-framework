@@ -3,8 +3,6 @@ package com.dev.rpc.serviceimpl;
 import com.dev.rpc.pojo.User;
 import com.dev.rpc.service.HelloService;
 
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * @author: dengxin.chen
  * @date: 2019-12-10 08:29
