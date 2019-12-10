@@ -8,7 +8,7 @@ import com.dev.rpc.v3.SpringNettyConfig;
 /**
  * @author: dengxin.chen
  * @date: 2019-12-10 08:09
- * @description:
+ * @description:netty版本
  */
 public class ServerAppRunV3 {
     public static void main(String[] args) {

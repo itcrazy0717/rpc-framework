@@ -28,7 +28,6 @@ public class RemoteInvocationHandler implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        System.out.println("进入代理，进行请求封装");
         // 封装请求数据
         RpcRequest request = new RpcRequest();
         request.setClassName(method.getDeclaringClass().getName());
@@ -41,6 +40,8 @@ public class RemoteInvocationHandler implements InvocationHandler {
         if (!Strings.isNullOrEmpty(serviceName)) {
             request.setServiceName(serviceName);
         }
+        System.out.println("进入代理，进行请求封装，具体封装数据：" + request.toString());
+        // 如果要使用BIO版本，需更改此处，并且服务器rpc服务器版本也要重新启动BIO版本
         // RpcNetTransport netTransport = new RpcNetTransport(host, port);
         // 使用netty进行连接
         RpcNettyTransport netTransport = new RpcNettyTransport(host, port);

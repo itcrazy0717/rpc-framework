@@ -8,7 +8,7 @@ import com.dev.rpc.v2.SpringConfig;
 /**
  * @author: dengxin.chen
  * @date: 2019-12-10 08:09
- * @description:
+ * @description:整合spring 基于BIO
  */
 public class ServerAppRunV2 {
     public static void main(String[] args) {

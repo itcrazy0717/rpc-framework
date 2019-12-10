@@ -18,7 +18,7 @@ import io.netty.handler.codec.serialization.ObjectEncoder;
 /**
  * @author: dengxin.chen
  * @date: 2019-12-10 10:45
- * @description:
+ * @description: 基于Netty进行服务端的连接
  */
 public class RpcNettyTransport extends SimpleChannelInboundHandler<Object> {
 
@@ -52,8 +52,11 @@ public class RpcNettyTransport extends SimpleChannelInboundHandler<Object> {
                      @Override
                      protected void initChannel(Channel channel) throws Exception {
                          channel.pipeline()
+                                // 先解码
                                 .addLast(new ObjectDecoder(Integer.MAX_VALUE, ClassResolvers.cacheDisabled(null)))
+                                // 再编码
                                 .addLast(new ObjectEncoder())
+                                // 处理对象 读取服务器返回值
                                 .addLast(RpcNettyTransport.this);
                      }
                  }).option(ChannelOption.TCP_NODELAY, true);
