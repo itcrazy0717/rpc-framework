@@ -29,6 +29,8 @@ public class RemoteInvocationHandler implements InvocationHandler {
         request.setClassName(method.getDeclaringClass().getName());
         request.setMethodName(method.getName());
         request.setParameters(args);
+        // 增加版本号
+        request.setVersion("v1.0");
         RpcNetTransport netTransport = new RpcNetTransport(host, port);
         Object result = netTransport.send(request);
         return result;

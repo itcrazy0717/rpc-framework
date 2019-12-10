@@ -26,4 +26,9 @@ public class RpcRequest implements Serializable {
      * 参数集合
      */
     private Object[] parameters;
+
+    /**
+     * 版本号
+     */
+    private String version;
 }
