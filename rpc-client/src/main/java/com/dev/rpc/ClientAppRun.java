@@ -9,7 +9,7 @@ import com.dev.rpc.service.HelloService;
  */
 public class ClientAppRun {
     public static void main(String[] args) {
-        HelloService helloService = RpcProxyClient.clientProxy(HelloService.class, "localhost", 8080);
+        HelloService helloService = RpcProxyClient.clientProxy(HelloService.class, "localhost", 8080, "v3.0", null);
         String result = helloService.sayHello("hello rpc");
         System.out.println(result);
         String msg = helloService.getMsg();

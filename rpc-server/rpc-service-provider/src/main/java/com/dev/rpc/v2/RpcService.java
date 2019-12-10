@@ -30,4 +30,11 @@ public @interface RpcService {
      * @return
      */
     String version() default "";
+
+    /**
+     * 服务别名，一个接口多个实现
+     *
+     * @return
+     */
+    String name() default "";
 }

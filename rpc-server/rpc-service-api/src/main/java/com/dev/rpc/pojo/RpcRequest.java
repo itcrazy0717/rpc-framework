@@ -31,4 +31,9 @@ public class RpcRequest implements Serializable {
      * 版本号
      */
     private String version;
+
+    /**
+     * 服务名，解决一个接口多个实现的问题
+     */
+    private String serviceName;
 }

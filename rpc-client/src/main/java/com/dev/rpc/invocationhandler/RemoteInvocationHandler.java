@@ -4,7 +4,8 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
 import com.dev.rpc.pojo.RpcRequest;
-import com.dev.rpc.transport.RpcNetTransport;
+import com.dev.rpc.transport.RpcNettyTransport;
+import com.google.common.base.Strings;
 
 /**
  * @author: dengxin.chen
@@ -15,10 +16,14 @@ public class RemoteInvocationHandler implements InvocationHandler {
 
     private String host;
     private int port;
+    private String version;
+    private String serviceName;
 
-    public RemoteInvocationHandler(String host, int port) {
+    public RemoteInvocationHandler(String host, int port, String version, String serviceName) {
         this.host = host;
         this.port = port;
+        this.version = version;
+        this.serviceName = serviceName;
     }
 
     @Override
@@ -30,9 +35,15 @@ public class RemoteInvocationHandler implements InvocationHandler {
         request.setMethodName(method.getName());
         request.setParameters(args);
         // 增加版本号
-        request.setVersion("v1.0");
-        RpcNetTransport netTransport = new RpcNetTransport(host, port);
-        Object result = netTransport.send(request);
-        return result;
+        if (!Strings.isNullOrEmpty(version)) {
+            request.setVersion(version);
+        }
+        if (!Strings.isNullOrEmpty(serviceName)) {
+            request.setServiceName(serviceName);
+        }
+        // RpcNetTransport netTransport = new RpcNetTransport(host, port);
+        // 使用netty进行连接
+        RpcNettyTransport netTransport = new RpcNettyTransport(host, port);
+        return netTransport.send(request);
     }
 }

@@ -21,8 +21,14 @@ public class RpcProxyClient {
      * @param <T>
      * @return
      */
-    public static <T> T clientProxy(final Class<T> classInterface, final String host, final int port) {
-        return (T) Proxy.newProxyInstance(classInterface.getClassLoader(), new Class[]{classInterface}, new RemoteInvocationHandler(host, port));
+    public static <T> T clientProxy(final Class<T> classInterface,
+                                    final String host,
+                                    final int port,
+                                    String version,
+                                    String serviceName) {
+        return (T) Proxy.newProxyInstance(classInterface.getClassLoader(),
+                                          new Class[]{classInterface}, 
+                                          new RemoteInvocationHandler(host, port, version, serviceName));
     }
 
 }

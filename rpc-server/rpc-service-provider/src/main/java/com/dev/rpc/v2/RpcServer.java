@@ -58,8 +58,12 @@ public class RpcServer implements ApplicationContextAware, InitializingBean {
                 // 获取接口定义
                 String serviceName = rpcService.value().getName();
                 String version = rpcService.version();
+                String name = rpcService.name();
                 if (!StringUtils.isEmpty(version)) {
                     serviceName += "-" + version;
+                }
+                if (!StringUtils.isEmpty(name)) {
+                    serviceName += "-" + name;
                 }
                 serviceMap.put(serviceName, bean);
             }
